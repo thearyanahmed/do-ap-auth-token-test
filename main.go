@@ -23,12 +23,15 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
     now := time.Now().Format(time.RFC3339)
     token := r.URL.Query().Get("token")
 
+    w.Header().Set("Cache-Control", "no-cache")
     if token == "" {
         token = generateRandomString(16)
         token = base64.StdEncoding.EncodeToString([]byte(token))
         w.Header().Set("AUTH-TOKEN", token)
         w.Header().Set("AUTH0-TOKEN", token)
         w.Header().Set("AUTH1_TOKEN", token)
+        w.Header().Set("Auth2-Token", token)
+        w.Header().Set("Auth3_Token", token)
         fmt.Fprintf(w, "Hello, World! Generated random token at: %s", now)
     } else {
         encodedToken := base64.StdEncoding.EncodeToString([]byte(token))
