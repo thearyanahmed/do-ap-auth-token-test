@@ -30,7 +30,7 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintf(w, "Hello, World! Generated random token at: %s", now)
     } else {
         encodedToken := base64.StdEncoding.EncodeToString([]byte(token))
-        w.Header().Set("AUTH-TOKEN", encodedToken)
+        w.Header().Set("AUTH_TOKEN", encodedToken)
         fmt.Fprintf(w, "Hello, World! Time: %s", now)
     }
 }
