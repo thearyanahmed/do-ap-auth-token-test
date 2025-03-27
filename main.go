@@ -27,6 +27,8 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
         token = generateRandomString(16)
         token = base64.StdEncoding.EncodeToString([]byte(token))
         w.Header().Set("AUTH-TOKEN", token)
+        w.Header().Set("AUTH0-TOKEN", token)
+        w.Header().Set("AUTH1_TOKEN", token)
         fmt.Fprintf(w, "Hello, World! Generated random token at: %s", now)
     } else {
         encodedToken := base64.StdEncoding.EncodeToString([]byte(token))
